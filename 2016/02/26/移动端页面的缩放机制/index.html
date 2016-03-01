@@ -4,22 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>ZENGzoe&#39;s blog</title>
+    <title>移动端页面的缩放机制 | ZENGzoe&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="曾洁仪">
     
 
     
-    <meta name="description" content="曾洁仪">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZENGzoe's blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="&amp;#x79FB;&amp;#x52A8;&amp;#x7AEF;&amp;#x9875;&amp;#x9762;&amp;#x7684;&amp;#x7F29;&amp;#x653E;&amp;#x673A;&amp;#x5236;&amp;#x76EE;&amp;#x524D;&amp;#xFF0C;&amp;#x8D8A;&amp;#x6765;&amp;#x8D8A;&amp;#x591A;&amp;#x7684;&amp;#x4EBA;&amp;#x4F7F;&amp;#x7528;&amp;#x624B;&amp;#x673A;&amp;#x4E0A;&amp;#x7F51;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端页面的缩放机制">
+<meta property="og:url" content="http://yoursite.com/2016/02/26/移动端页面的缩放机制/index.html">
 <meta property="og:site_name" content="ZENGzoe's blog">
-<meta property="og:description" content="曾洁仪">
+<meta property="og:description" content="&amp;#x79FB;&amp;#x52A8;&amp;#x7AEF;&amp;#x9875;&amp;#x9762;&amp;#x7684;&amp;#x7F29;&amp;#x653E;&amp;#x673A;&amp;#x5236;&amp;#x76EE;&amp;#x524D;&amp;#xFF0C;&amp;#x8D8A;&amp;#x6765;&amp;#x8D8A;&amp;#x591A;&amp;#x7684;&amp;#x4EBA;&amp;#x4F7F;&amp;#x7528;&amp;#x624B;&amp;#x673A;&amp;#x4E0A;&amp;#x7F51;">
+<meta property="og:image" content="http://yoursite.com/2016/02/26/移动端页面的缩放机制/metawidth.png">
+<meta property="og:image" content="http://yoursite.com/2016/02/26/移动端页面的缩放机制/hello.gif">
+<meta property="og:updated_time" content="2016-03-01T08:04:18.815Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZENGzoe's blog">
-<meta name="twitter:description" content="曾洁仪">
+<meta name="twitter:title" content="移动端页面的缩放机制">
+<meta name="twitter:description" content="&amp;#x79FB;&amp;#x52A8;&amp;#x7AEF;&amp;#x9875;&amp;#x9762;&amp;#x7684;&amp;#x7F29;&amp;#x653E;&amp;#x673A;&amp;#x5236;&amp;#x76EE;&amp;#x524D;&amp;#xFF0C;&amp;#x8D8A;&amp;#x6765;&amp;#x8D8A;&amp;#x591A;&amp;#x7684;&amp;#x4EBA;&amp;#x4F7F;&amp;#x7528;&amp;#x624B;&amp;#x673A;&amp;#x4E0A;&amp;#x7F51;">
 
     
     <link rel="alternative" href="/atom.xml" title="ZENGzoe&#39;s blog" type="application/atom+xml">
@@ -73,12 +76,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2016/02/26/移动端页面的缩放机制/" title="移动端页面的缩放机制" itemprop="url">移动端页面的缩放机制</a>
@@ -92,9 +93,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h1 id="&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;"><a href="#&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;" class="headerlink" title="&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;"></a>&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;</h1><p>&#x76EE;&#x524D;&#xFF0C;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x4EBA;&#x4F7F;&#x7528;&#x624B;&#x673A;&#x4E0A;&#x7F51;&#xFF0C;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x4E0D;&#x65AD;&#x8D85;&#x8D8A;&#x684C;&#x9762;&#x8BBE;&#x5907;&#xFF0C;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x6210;&#x4E3A;&#x6700;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x7EC8;&#x7AEF;&#x3002;&#x4F46;&#x662F;&#x600E;&#x6837;&#x624D;&#x80FD;&#x5728;&#x5927;&#x5927;&#x5C0F;&#x5C0F;&#x4E0D;&#x540C;&#x7684;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x53CB;&#x597D;&#x7684;&#x5C55;&#x73B0;&#x9875;&#x9762;&#x5462;&#xFF1F;&#x4E8E;&#x662F;&#x4E4E;&#xFF0C;&#x6709;&#x4E86;&#x201C;&#x81EA;&#x9002;&#x5E94;&#x7F51;&#x9875;&#x8BBE;&#x8BA1;&#x201D;&#x3002;</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端页面的缩放机制"><span class="toc-number">1.</span> <span class="toc-text">移动端页面的缩放机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#缩放机制"><span class="toc-number">1.1.</span> <span class="toc-text">缩放机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#viewport"><span class="toc-number">1.1.1.</span> <span class="toc-text">viewport</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zoom缩放机制"><span class="toc-number">1.2.</span> <span class="toc-text">zoom缩放机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REM缩放机制"><span class="toc-number">1.3.</span> <span class="toc-text">REM缩放机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#百分比法缩放"><span class="toc-number">1.4.</span> <span class="toc-text">百分比法缩放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#媒体查询缩放机制"><span class="toc-number">1.5.</span> <span class="toc-text">媒体查询缩放机制</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;"><a href="#&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;" class="headerlink" title="&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;"></a>&#x79FB;&#x52A8;&#x7AEF;&#x9875;&#x9762;&#x7684;&#x7F29;&#x653E;&#x673A;&#x5236;</h1><p>&#x76EE;&#x524D;&#xFF0C;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x4EBA;&#x4F7F;&#x7528;&#x624B;&#x673A;&#x4E0A;&#x7F51;&#xFF0C;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x4E0D;&#x65AD;&#x8D85;&#x8D8A;&#x684C;&#x9762;&#x8BBE;&#x5907;&#xFF0C;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x6210;&#x4E3A;&#x6700;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x7EC8;&#x7AEF;&#x3002;&#x4F46;&#x662F;&#x600E;&#x6837;&#x624D;&#x80FD;&#x5728;&#x5927;&#x5927;&#x5C0F;&#x5C0F;&#x4E0D;&#x540C;&#x7684;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x53CB;&#x597D;&#x7684;&#x5C55;&#x73B0;&#x9875;&#x9762;&#x5462;&#xFF1F;&#x4E8E;&#x662F;&#x4E4E;&#xFF0C;&#x6709;&#x4E86;&#x201C;&#x81EA;&#x9002;&#x5E94;&#x7F51;&#x9875;&#x8BBE;&#x8BA1;&#x201D;&#x3002;</p>
 <blockquote>
 <p>&#x201C;&#x81EA;&#x9002;&#x5E94;&#x7F51;&#x9875;&#x8BBE;&#x8BA1;&#x201D;&#xFF08;Responsive Web Design&#xFF09;&#xFF0C;&#x6307;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x8BC6;&#x522B;&#x5C4F;&#x5E55;&#x3001;&#x5E76;&#x505A;&#x51FA;&#x76F8;&#x5E94;&#x8C03;&#x6574;&#x7684;&#x7F51;&#x9875;&#x8BBE;&#x8BA1;&#x3002;<br>                                                        &#x2014;&#x2014; Ethan Marcotte</p>
 </blockquote>
@@ -112,14 +120,9 @@
 <h2 id="&#x767E;&#x5206;&#x6BD4;&#x6CD5;&#x7F29;&#x653E;"><a href="#&#x767E;&#x5206;&#x6BD4;&#x6CD5;&#x7F29;&#x653E;" class="headerlink" title="&#x767E;&#x5206;&#x6BD4;&#x6CD5;&#x7F29;&#x653E;"></a>&#x767E;&#x5206;&#x6BD4;&#x6CD5;&#x7F29;&#x653E;</h2><p>CSS&#x4E2D;&#x7684;&#x767E;&#x5206;&#x6BD4;&#x4E2D;&#x7684;&#x767E;&#x6307;&#x7684;&#x662F;&#x7236;&#x5143;&#x7D20;&#x3002;&#x5B50;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x7684;&#x5BBD;&#x5EA6;&#x5927;&#x5C0F;&#x5355;&#x4F4D;&#x4E3A;%&#x90FD;&#x662F;&#x4EE5;&#x4E3A;&#x5143;&#x7D20;&#x4E3A;&#x57FA;&#x7840;&#x8FDB;&#x884C;&#x5212;&#x5206;&#x3002;&#x6240;&#x4EE5;body&#x9ED8;&#x8BA4;&#x5BBD;&#x5EA6;&#x662F;&#x5C4F;&#x5E55;&#x5BBD;&#x5EA6;&#xFF08;PC&#x4E2D;&#x6307;&#x7684;&#x662F;&#x6D4F;&#x89C8;&#x5668;&#x5BBD;&#x5EA6;&#xFF09;&#x5B50;&#x5B59;&#x5143;&#x7D20;&#x6309;&#x767E;&#x5206;&#x6BD4;&#x5B9A;&#x4F4D;&#xFF08;&#x6216;&#x6307;&#x5B9A;&#x5C3A;&#x5BF8;&#xFF09;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x53EA;&#x9002;&#x5408;&#x5E03;&#x5C40;&#x7B80;&#x5355;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x590D;&#x6742;&#x7684;&#x9875;&#x9762;&#x5B9E;&#x73B0;&#x5F88;&#x56F0;&#x96BE;&#x3002;</p>
 <h2 id="&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x7F29;&#x653E;&#x673A;&#x5236;"><a href="#&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x7F29;&#x653E;&#x673A;&#x5236;" class="headerlink" title="&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x7F29;&#x653E;&#x673A;&#x5236;"></a>&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x7F29;&#x653E;&#x673A;&#x5236;</h2><p>&#x5A92;&#x4F53;&#x67E5;&#x8BE2;(media queries)&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x5BF9;&#x4E0D;&#x540C;&#x7684;&#x8BBE;&#x5907;&#x6307;&#x5B9A;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x5F0F;&#x3002;<br>&#x9875;&#x9762;&#x5F15;&#x7528;&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x7684;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">media</span> screen (max-width:<span class="number">480px</span>)</span>{</span><br><span class="line">    <span class="tag">p</span><span class="rules">{<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;}</span></span><br><span class="line">}</span><br><span class="line"><span class="at_rule">@<span class="keyword">media</span> screen (min-width:<span class="number">480px</span>)</span>{</span><br><span class="line">    <span class="tag">p</span><span class="rules">{<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">600px</span></span></span>;}</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -127,134 +130,43 @@
 
 
 
-
-<div class="comments-count">
+	<div class="article-share" id="share">
 	
-</div>
+	  <div data-url="http://yoursite.com/2016/02/26/移动端页面的缩放机制/" data-title="移动端页面的缩放机制 | ZENGzoe&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/02/25/使用Github-Page-和-Hexo创建博客/" title="使用Github Page 和 Hexo创建博客" itemprop="url">使用Github Page 和 Hexo创建博客</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="曾洁仪" target="_blank" itemprop="author">曾洁仪</a>
-		
-  <p class="article-time">
-    <time datetime="2016-02-25T09:11:01.000Z" itemprop="datePublished"> 发表于 2016-02-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>#&#x5728;Github page&#x4E0A;&#x521B;&#x5EFA;&#x535A;&#x5BA2;</p>
-<p>###Step 1<br>&#x767B;&#x5F55;&#x6216;&#x6CE8;&#x518C;<a href="https://github.com/" target="_blank" rel="external">Github</a></p>
-<p>###Step 2<br>&#x767B;&#x5F55;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x5728;Github&#x53F3;&#x4E0B;&#x89D2;&#x70B9;&#x51FB;[new respository],Repository name&#x4E3A;<a href="http://zengzoe.github.io/" target="_blank" rel="external">ZENGzoe.github.io</a>,&#x5176;&#x4E2D;ZENGzoe&#x4E3A;&#x81EA;&#x5DF1;&#x552F;&#x4E00;&#x7684;github&#x540D;&#x3002;</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/02/25/使用Github-Page-和-Hexo创建博客/"  title="使用Github Page 和 Hexo创建博客">
+ <strong>下一篇：</strong><br/> 
+ <span>使用Github Page 和 Hexo创建博客
+</span>
+</a>
 </div>
 
-</footer>
+</nav>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/02/25/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="曾洁仪" target="_blank" itemprop="author">曾洁仪</a>
-		
-  <p class="article-time">
-    <time datetime="2016-02-25T06:44:05.134Z" itemprop="datePublished"> 发表于 2016-02-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
 	
-</div>
 
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端页面的缩放机制"><span class="toc-number">1.</span> <span class="toc-text">移动端页面的缩放机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#缩放机制"><span class="toc-number">1.1.</span> <span class="toc-text">缩放机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#viewport"><span class="toc-number">1.1.1.</span> <span class="toc-text">viewport</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zoom缩放机制"><span class="toc-number">1.2.</span> <span class="toc-text">zoom缩放机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REM缩放机制"><span class="toc-number">1.3.</span> <span class="toc-text">REM缩放机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#百分比法缩放"><span class="toc-number">1.4.</span> <span class="toc-text">百分比法缩放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#媒体查询缩放机制"><span class="toc-number">1.5.</span> <span class="toc-text">媒体查询缩放机制</span></a></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -385,12 +297,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -461,4 +450,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
