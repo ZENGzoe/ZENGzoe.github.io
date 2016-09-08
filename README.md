@@ -29,3 +29,17 @@ npm install
 ```
 hexo new "my new post"
 ```
+
+5. 发布文章
+```
+hexo d
+```
+
+6.提交代码
+```
+git add .
+git commit -m "提交"
+git push origin hexo
+```
+
+
