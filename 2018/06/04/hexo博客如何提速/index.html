@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> hexo博客如何提速 · 曾洁仪博客</title><meta name="description" content="hexo博客如何提速 - Zeng Zoe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="css/googleapisFonts.css" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/zengjieyi1994" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/ZENGzoe" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><span style="display:none !important;"><span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span></span></span><article class="post-block"><h1 class="post-title">hexo博客如何提速</h1><div class="post-time">2018年6月3日</div><div class="post-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直发现我的hexo搭建的博客打开速度慢，加载时间长，终于看不下去，排查原因优化优化速度。</p>
+<h2 id="原因及解决方法"><a href="#原因及解决方法" class="headerlink" title="原因及解决方法"></a>原因及解决方法</h2><p>我的博客主页内容较少，且请求的图片数量只有一张。在排查多个请求过程中发现，我使用的<code>apollo</code>主题请求了一个其他域的样式文件<code>https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600</code>，多次打开该文件都需要较长的加载时间。</p>
+<p>尝试将改样式文件存储为本地，在<code>/themes/apollo/laylout/partial/head.jade</code>文件中，修改导入文件如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">link(rel="stylesheet", href="css/googleapisFonts.css" type='text/css')</span><br></pre></td></tr></table></figure>
+<p>修改完毕，发布！</p>
+<p>访问速度终于杠杠滴！</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/05/25/sprite雪碧图生成方法/" class="next">NEXT</a></div><div data-thread-key="2018/06/04/hexo博客如何提速/" data-title="hexo博客如何提速" data-url="http://zengzoe.github.io/2018/06/04/hexo博客如何提速/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"zengzoe"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2016 - 2018 <a href="http://zengzoe.github.io">Zeng Zoe</a>, unless otherwise noted.</p><p style="display:none !important;"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span><span id="busuanzi_container_site_uv">本站总访客数<span id="busuanzi_value_site_uv"></span>人次</span></p></div></footer><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
