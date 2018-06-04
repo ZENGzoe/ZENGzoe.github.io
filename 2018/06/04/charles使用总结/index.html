@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> charles使用总结 · 曾洁仪博客</title><meta name="description" content="charles使用总结 - Zeng Zoe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="css/googleapisFonts.css" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/zengjieyi1994" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/ZENGzoe" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><span style="display:none !important;"><span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span></span></span><article class="post-block"><h1 class="post-title">charles使用总结</h1><div class="post-time">2018年6月4日</div><div class="post-content"><p>Charles是一款可以代理调试的工具，适用于Mac，Windows系统设备可以使用Fiddler。使用Charles工具可以更方便地调试请求：</p>
+<p>1.可获取手机上的请求<br>2.可模拟慢速<br>3.可修改网络请求内容<br>4.可修改服务器返回的内容</p>
+<p>接下来，我将从以上几个方面去总结Charles的使用。</p>
+<h4 id="设置系统代理"><a href="#设置系统代理" class="headerlink" title="设置系统代理"></a>设置系统代理</h4><p>将Charles设置为系统代理才可以监控请求，所以使用Charles的第一步是设置为系统代理，步骤如下：</p>
+<p>1.选择左上角“Proxy -&gt; macOS Proxy”，开启macOS Proxy。<br><img src="/2018/06/04/charles使用总结/charles01.png" alt=""></p>
+<p>2.在“系统偏好设置 -&gt; 高级 -&gt; 代理”，选择如下：<br><img src="/2018/06/04/charles使用总结/charles02.png" alt=""><br>注意：自动代理配置选项不能选中哦，否则检测不到请求</p>
+<p>操作完之后就可以在Charles主页看到请求。<br><img src="/2018/06/04/charles使用总结/charles03.png" alt=""></p>
+<h4 id="获取手机上的请求"><a href="#获取手机上的请求" class="headerlink" title="获取手机上的请求"></a>获取手机上的请求</h4><p>有时想要手机设备上进行一些操作，需要调试查看服务器返回的数据，Charles在此提供了大大的便利。</p>
+<p><strong> 1.打开Charles的代理功能 </strong> </p>
+<p>(1) 选择左上角“Proxy -&gt; Proxy settings”<br><img src="/2018/06/04/charles使用总结/charles04.png" alt=""><br>(2) 勾选“Enable transparent HTTP proxing”,Port端口填8888<br><img src="/2018/06/04/charles使用总结/charles05.png" alt=""></p>
+<p><strong> 2.抓https请求，需安装Charles根证书 </strong></p>
+<p>(1)选择左上角“help -&gt; SSL Proxing -&gt; Install Charles Root Certificate”<br><img src="/2018/06/04/charles使用总结/charles06.png" alt=""><br>(2) 点击添加<br><img src="/2018/06/04/charles使用总结/charles07.png" alt=""><br>(3) 在钥匙串访问中找到Charles Proxy CA，选中双击<br><img src="/2018/06/04/charles使用总结/charles08.png" alt=""><br>(4) 点击信任，展示内容，选择始终信任<br><img src="/2018/06/04/charles使用总结/charles09.png" alt=""></p>
+<p>安装完成。</p>
+<p><strong> 3.手机设置代理 </strong></p>
+<p>(1) 首先需要找到电脑的IP地址，在“系统偏好设置 -&gt; 网络”可以查看得到IP地址。<br><img src="/2018/06/04/charles使用总结/charles10.png" alt=""></p>
+<p>(2) 在手机“设置 -&gt; Wi-Fi”找到跟电脑相同域的wifi，点击该wifi进入wifi详情页，点击Configure Proxy<br><img src="/2018/06/04/charles使用总结/charles12.png" alt=""></p>
+<p>(3) 在Configure Proxy中，在Server填入电脑的IP地址，Port为Charles设置的代理端口。<br><img src="/2018/06/04/charles使用总结/charles13.png" alt=""></p>
+<p>(4) 此时Charles弹出手机连接信号，选择Alloy。<br><img src="/2018/06/04/charles使用总结/charles11.png" alt=""></p>
+<p>(5) 在手机浏览器上访问地址：<a href="http://chls.pro/ssl" target="_blank" rel="noopener">http://chls.pro/ssl</a>，打开安装证书页面，点击Allow。<br><img src="/2018/06/04/charles使用总结/charles14.png" alt=""></p>
+<p>(6) 安装证书。<br><img src="/2018/06/04/charles使用总结/charles15.png" alt=""></p>
+<p>(7) 完成设置<br><img src="/2018/06/04/charles使用总结/charles16.png" alt=""></p>
+<p>手机浏览页面，即可在Charles看到请求。</p>
+<h4 id="模拟慢速环境"><a href="#模拟慢速环境" class="headerlink" title="模拟慢速环境"></a>模拟慢速环境</h4><p>有时项目需要在慢速情况下进行对应的操作，那么可以通过Charles的Throttle设置模拟慢速环境。</p>
+<p>1.在左上角选择“Proxy -&gt; Throttle settings”<br><img src="/2018/06/04/charles使用总结/charles17.png" alt=""></p>
+<p>2.选中Enable Throttling，在下面的配置中填入需要的参数，选择ok<br><img src="/2018/06/04/charles使用总结/charles18.png" alt=""></p>
+<p>3.手机重新刷新页面，会发现网络速度降低了，完成配置。</p>
+<h4 id="修改网络请求内容"><a href="#修改网络请求内容" class="headerlink" title="修改网络请求内容"></a>修改网络请求内容</h4><p>有时为了测试服务器接口的不同参数情况下的请求，那么可以通过Charles修改接口的请求并重新请求。</p>
+<p>在需要修改的请求上右击，选择“Compose”，即可进入该请求的编辑页。可以修改该请求的请求方式、请求地址、协议等，修改完成后点击“Execute”执行，返回结果。<br><img src="/2018/06/04/charles使用总结/charles19.png" alt=""></p>
+<h4 id="修改服务器返回的内容"><a href="#修改服务器返回的内容" class="headerlink" title="修改服务器返回的内容"></a>修改服务器返回的内容</h4><p>在项目中，较常使用Map Local来修改服务器返回的内容，Map Local可以将网络请求重定向到本地文件，主要用途如下：</p>
+<p>1.直接修改某个接口返回的内容，比如可以模拟接口异常。<br>2.将线上html、css、js等文件重定向到本地进行调试。</p>
+<p>直接选择接口或文件右击，选择Map Local，打开Edit Mapping页，在Local path选中需要模拟接口异常的json文件或需要重定向的静态文件，点击ok即可，重新刷新页面。<br><img src="/2018/06/04/charles使用总结/charles20.png" alt=""></p>
+<h4 id="模拟网络延迟"><a href="#模拟网络延迟" class="headerlink" title="模拟网络延迟"></a>模拟网络延迟</h4><p>项目中，可能有这样的需求，比如网络延迟10s要弹出网络延迟的toast，那么Charles可以使用Breakpoints模拟网络延迟的环境来测试页面。</p>
+<p>Breakpoints类似断点，可以在某网络请求时，截断该请求，可修改请求的内容，在截断过程中，请求还在进行，当请求超过10s时，达到前端设置的10s延迟时间，导致页面请求超时，即可模拟网络延迟。</p>
+<p><img src="/2018/06/04/charles使用总结/charles21.png" alt=""></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Charles的功能强大，在我们开发和测试阶段提供很大的帮忙，我会继续挖掘哒！！</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2018/06/04/hexo博客如何提速/" class="next">NEXT</a></div><div data-thread-key="2018/06/04/charles使用总结/" data-title="charles使用总结" data-url="http://zengzoe.github.io/2018/06/04/charles使用总结/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"zengzoe"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2016 - 2018 <a href="http://zengzoe.github.io">Zeng Zoe</a>, unless otherwise noted.</p><p style="display:none !important;"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span><span id="busuanzi_container_site_uv">本站总访客数<span id="busuanzi_value_site_uv"></span>人次</span></p></div></footer><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
