@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 正则表达式 · 曾洁仪博客</title><meta name="description" content="正则表达式 - Zeng Zoe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="css/googleapisFonts.css" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/zengjieyi1994" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/ZENGzoe" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><span style="display:none !important;"><span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span></span></span><article class="post-block"><h1 class="post-title">正则表达式</h1><div class="post-time">2018年9月24日</div><div class="post-content"><p>对于正则表达式可是又爱又恨，爱的是正则表达式在编程中实用作用大，恨的是学了太容易忘记，因此将正则表达式的语法记录下来，加深记忆，又方便查阅。</p>
+<p>正则表达式（Regular Expression，简写：RegExp）可以用来匹配或替换某些模式的字符，而正则表达式则是这些模式。</p>
+<p>当写的正则表达式不确定是否正确时，可以使用测试工具测试：<a href="http://tool.oschina.net/regex/" target="_blank" rel="noopener">在线表达式测试</a>。当不太确定正则表达式的意思时，可以使用分析工具分析：<a href="https://jex.im/regulex/" target="_blank" rel="noopener">正则分析器</a>。</p>
+<p><br></p>
+<h2 id="创建RegExp"><a href="#创建RegExp" class="headerlink" title="创建RegExp"></a>创建RegExp</h2><p>创建正则表达式的方法有两种：</p>
+<p><strong>1. 直接量语法</strong></p>
+<p>直接通过斜杠<code>/</code>包住元字符即可声明一个正则表达式：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/hello/</span></span><br></pre></td></tr></table></figure>
+<p><strong>2. 创建RegExp对象的语法</strong></p>
+<p>通过RegExp实例化：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'hello'</span> , <span class="string">'g'</span>)</span><br></pre></td></tr></table></figure>
+<p>RegExp第一个参数为正则表达式，第二个参数可选，修饰符。下面将会有详解介绍。</p>
+<p><br></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>正则表达式由一些普通的字符和元字符组成。普通的字符比如匹配hello这个字符，那么正则表达式可以写为/hello/。而元字符有多种，可以根据元字符的用法分为几类：基本元字符、定义类元字符、数量类元字符、位置类元字符、修饰符类字符。</p>
+<h4 id="基本元字符："><a href="#基本元字符：" class="headerlink" title="基本元字符："></a>基本元字符：</h4><p>基本元字符划分较基本的元字符：</p>
+<ol>
+<li><p><code>.</code> : 匹配除换行符<code>\n</code>之外的任何字符。如<code>/./</code>，可以匹配<code>a</code>、<code>A</code>或<code>_</code>等非换行符字符。</p>
+</li>
+<li><p><code>\</code> : 与下一个字符搭配，匹配为一个特殊字符。如<code>/n/</code>，匹配的是一个<code>n</code>字符，如果正则表达式为<code>/\n/</code>，则匹配一个换行符。</p>
+</li>
+<li><p><code>|</code> : 逻辑或操作符。</p>
+</li>
+</ol>
+<figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">var reg = /hello|world/g,</span><br><span class="line">    <span class="built_in">str</span> = <span class="string">'world'</span>;</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(<span class="built_in">str</span>.<span class="built_in">match</span>(reg))  <span class="comment">// ["world"]</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>[ ]</code> : 匹配字符的合集，可匹配集合中的任何一个字符。在<code>[ ]</code>中<code>.</code>、<code>*</code>、<code>\</code>等表示其本身。</li>
+</ol>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">var reg = /<span class="number">1</span>[<span class="number">234</span>]<span class="number">2</span>/g,</span><br><span class="line">    str = '<span class="number">12</span> <span class="number">122</span> <span class="number">112</span> <span class="number">1321</span>';</span><br><span class="line"></span><br><span class="line">console.log(str.match(reg)) <span class="comment">// ["122", "132"]</span></span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p><code>[^]</code> :  表示非，对集合里面的字符取非。如<code>[^.*]</code>，可以匹配不为<code>.</code>或<code>*</code>的字符。</p>
+</li>
+<li><p><code>-</code> : 在<code>[]</code>中使用，定义一个区间。如<code>/[a-z]/</code>，可以匹配a到z的小写字母。</p>
+</li>
+<li><p><code>()</code> : 表示分组。</p>
+</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="comment">//可以用来匹配hello xxx也可以用来匹配helloworld</span></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /(hello|helloworld) xxx/;</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>('hello xxx'))      <span class="comment">//true</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>('helloworld xxx')) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p><code>()</code>还可以用来表示捕获括号，捕获括号里的表达式叫做子表达式，捕获的子串可以通过RegExp的属性<code>$1、$2...$9</code>获得。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /(\<span class="keyword">d</span>+)-(\<span class="keyword">d</span>+)-(\<span class="keyword">d</span>+)/,</span><br><span class="line">    str = '1980-9-8';</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span>.<span class="keyword">test</span>(str);</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(RegExp.<span class="variable">$1</span>); <span class="comment">//"1980"</span></span><br><span class="line">console.<span class="built_in">log</span>(RegExp.<span class="variable">$2</span>); <span class="comment">//"9"</span></span><br><span class="line">console.<span class="built_in">log</span>(RegExp.<span class="variable">$3</span>); <span class="comment">//"8"</span></span><br></pre></td></tr></table></figure>
+<p>如果不想捕获，只想使用分组的功能，可以使用<code>(?:p)</code>表示不捕获。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /(\<span class="keyword">d</span>+)-(?:\<span class="keyword">d</span>+)-\<span class="keyword">d</span>+/,</span><br><span class="line">    str = '1980-9-7';</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span>.<span class="keyword">test</span>(str);</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(RegExp.<span class="variable">$1</span>); <span class="comment">//"1980"</span></span><br><span class="line">console.<span class="built_in">log</span>(RegExp.<span class="variable">$2</span>); <span class="comment">//""</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="定义类元字符："><a href="#定义类元字符：" class="headerlink" title="定义类元字符："></a>定义类元字符：</h4><p>定义类元字符表示用某些字符表示一类字符：</p>
+<ol>
+<li><p><code>\d</code> : 匹配一个数字字符，等价于<code>/[0-9]/</code>。digit的缩写。</p>
+</li>
+<li><p><code>\D</code> : 匹配一个非数字的字符，等价于<code>/[^0-9]/</code>。</p>
+</li>
+<li><p><code>\w</code> : 匹配一个大小写字母数字下划线的字符，等价于<code>/[a-zA-Z0-9_]/</code>。word的缩写。</p>
+</li>
+<li><p><code>\W</code> : 匹配一个非大小写字母数字下划线的字符，等价于<code>/[^a-zA-Z0-9_]/</code>。</p>
+</li>
+<li><p><code>\s</code> : 匹配一个空白符，包括空格、换行符（<code>\n</code>）、回车符（<code>\r</code>）、水平制表符（<code>\t</code>）、垂直制表符（<code>\v</code>）、换页符（<code>\f</code>），等价于<code>/[\n\r\t\v\f]/</code>。space的缩写。</p>
+</li>
+<li><p><code>\S</code> : 表示一个非空白符。等价于<code>/[^\n\r\t\v\f]/</code>。</p>
+</li>
+</ol>
+<p><br></p>
+<h4 id="数量类元字符："><a href="#数量类元字符：" class="headerlink" title="数量类元字符："></a>数量类元字符：</h4><p>数量类元字符表示前面的字符匹配的数量：</p>
+<ol>
+<li><p><code>{m}</code> : 表示前面的字符重复m次。如<code>/\d{2}/</code>，匹配两个数字，如可以匹配12。</p>
+</li>
+<li><p><code>{m,n}</code> : 表示前面的字符至少重复m次，至多重复n次。如<code>/\d{2,4}/</code>，123和32都可以匹配得到。另外，{m,}表示至少m次。</p>
+</li>
+<li><p><code>?</code> : 表示前面的字符出现0次或1次。等价于{0,1}。还有一种情况，默认情况下，正则的匹配是贪婪模式，<code>?</code>如果跟在量词<code>*</code>、<code>{}</code>、<code>?</code>、<code>+</code>后面，就会使得匹配变成非贪婪模式。下面将会介绍贪婪模式和非贪婪模式。</p>
+</li>
+</ol>
+<figure class="highlight processing"><table><tr><td class="code"><pre><span class="line"><span class="comment">//贪婪模式: 尽可能的匹配更多的字符</span></span><br><span class="line">var reg = /\w&#123;<span class="number">2</span>,<span class="number">4</span>&#125;/;</span><br><span class="line">    <span class="built_in">str</span> = <span class="string">'abcde'</span>;</span><br><span class="line">console.<span class="built_in">log</span>(<span class="built_in">str</span>.<span class="built_in">match</span>(reg)[<span class="number">0</span>]); <span class="comment">//abcd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//贪婪模式：按照至少的字符量来匹配</span></span><br><span class="line">var reg2 = /\w&#123;<span class="number">2</span>,<span class="number">4</span>&#125;?/;</span><br><span class="line">    <span class="built_in">str</span> = <span class="string">'abcde'</span>;</span><br><span class="line">console.<span class="built_in">log</span>(<span class="built_in">str</span>.<span class="built_in">match</span>(reg2)[<span class="number">0</span>]);  <span class="comment">//ab</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p><code>+</code> : 表示前面的字符至少出现一次。等价于{1,}。</p>
+</li>
+<li><p><code>*</code> : 表示前面的字符出现零次或多次。等价于{0,}。</p>
+</li>
+</ol>
+<p><br></p>
+<h4 id="位置类元字符："><a href="#位置类元字符：" class="headerlink" title="位置类元字符："></a>位置类元字符：</h4><p>位置类元字符匹配的是位置，而非前面所说的字符。如字符串<code>abc</code>，这个字符共有4个位置：(位置)a(位置)b(位置)c(位置)。</p>
+<ol>
+<li><p><code>^</code> : 匹配的是表达式的开始位置。</p>
+</li>
+<li><p><code>$</code> : 匹配的是表达式的结束位置。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在abc的开始位置和结束位置插入`*`</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^|$/g</span>,</span><br><span class="line">    str = <span class="string">'abc'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg , <span class="string">'*'</span>)) <span class="comment">//*abc*</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><code>(?=p)</code> : 匹配的是<code>p</code>前面的位置。如在字符<code>aa</code>前插入<code>bb</code>：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'baac'</span>.replace(<span class="regexp">/(?=aa)/</span>,<span class="string">'bb'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str) <span class="comment">//bbbaac</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>(?!0)</code> : 匹配的不是<code>p</code>前面的位置。如在非字符<code>aa</code>前插入<code>dd</code>：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'baac'</span>.replace(<span class="regexp">/(?!aa)/</span>,<span class="string">'dd'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str) <span class="comment">//ddbaac</span></span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><code>\b</code> : 匹配单词的边界。单词边界指的是<code>\w([a-zA-Z0-9_])</code>和<code>\W</code>之前的边界，包括<code>\w</code>和<code>^</code>以及<code>$</code>之间的位置。</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在单词边界插入*</span></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /\b/<span class="keyword">g</span>,</span><br><span class="line">    str = 's<span class="variable">$kdh</span> ssdf[<span class="keyword">ac</span>] s_c#';</span><br><span class="line">str.<span class="keyword">replace</span>(<span class="keyword">reg</span> , '*')    <span class="comment">//*s*$*kdh* *ssdf*[*ac*] *s_c*#</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li><code>\B</code> : 匹配非单词的边界。</li>
+</ol>
+<p><br></p>
+<h4 id="修饰符类字符："><a href="#修饰符类字符：" class="headerlink" title="修饰符类字符："></a>修饰符类字符：</h4><ol>
+<li><code>g</code> : 全局匹配</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用*代替ab，reg1为全局搜索，reg2未设全局搜索</span></span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/ab/g</span>,   <span class="comment">//全局搜索，全部匹配的结果都替换掉</span></span><br><span class="line">    reg2 = <span class="regexp">/ab/</span>;    <span class="comment">//搜索成功一次就替换，不搜索下去</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'abc abd'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg1 , <span class="string">'*'</span>))   <span class="comment">//"*c *d"</span></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg2 , <span class="string">'*'</span>))   <span class="comment">//"*c abd"</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><code>i</code> : 不区分大小写匹配</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="comment">//查询字符串中是否包含a</span></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /a/i,</span><br><span class="line">    reg2 = /a/;</span><br><span class="line"><span class="keyword">var</span> str = 'BAC';</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(str))   <span class="comment">//true</span></span><br><span class="line">console.<span class="built_in">log</span>(reg2.<span class="keyword">test</span>(str))  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><code>m</code> : 多行搜索</li>
+</ol>
+<p><br></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>对于正则来说，可以有两种类型的调用方法进行：一个是正则对象上的方法，一个是string对象上的方法。</p>
+<h4 id="正则对象上的方法"><a href="#正则对象上的方法" class="headerlink" title="正则对象上的方法"></a>正则对象上的方法</h4><p>正则对象上的方法有<code>test</code>、<code>exec</code>：</p>
+<p><strong>1.test方法</strong></p>
+<p>用于检测一个字符串是否匹配某个模式。</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">RegExpObject.test(<span class="built_in">string</span>)</span><br></pre></td></tr></table></figure>
+<p>参数为一个字符串。如果匹配返回true，不匹配返回false。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /abc/,</span><br><span class="line">    str = 'abcedf';</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(str)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p><br><br><strong>2.exec方法</strong></p>
+<p>用来检索字符串中的正则表达式的匹配。</p>
+<figure class="highlight gauss"><table><tr><td class="code"><pre><span class="line">RegExpObject.<span class="built_in">exec</span>(<span class="keyword">string</span>)</span><br></pre></td></tr></table></figure>
+<p>参数为一个字符串。当匹配时，返回一个数组。否则返回null。</p>
+<p>返回的数组中，第0个元素为匹配的字符，第1个元素（如果有子表达式的话）为RegExpObject的第1个字表达式相匹配的的字符，第2个元素(如果有的话)为RegExpObject的第2个字表达式相匹配的的字符，以此类推。除此之外返回的数组还包含两个属性<code>index</code>和<code>input</code>，<code>index</code>为第0个元素匹配字符的第一个字符的位置，<code>input</code>为被检索的原字符string。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /([a-z])[a-z]&#123;1,3&#125;/;</span><br><span class="line"><span class="keyword">var</span> str = '<span class="keyword">ac</span> abcd eabc abcdes 23abc';</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.exec(str))  <span class="comment">//["ac", "a", index: 0, input: "ac abcd eabc abcdes 23abc", groups: undefined]</span></span><br></pre></td></tr></table></figure>
+<p>还有另外一种情况，当RegExpObject为全局检索时，第一次检索时匹配的开始位置为0，即RegExpObject的属性lastIndex为0，第二次检索会从第一次匹配成功的字符的下一个位置开始检索，此时lastIndex为下一个位置，第三次检索会从第二次匹配成功的字符的下一个位置开始检索，以此类推，直到最后没有匹配返回null。</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">var reg = /([a-z])[a-z]&#123;<span class="number">1</span>,<span class="number">3</span>&#125;/,</span><br><span class="line">    reg2 = /([a-z])[a-z]&#123;<span class="number">1</span>,<span class="number">3</span>&#125;/g;</span><br><span class="line">var <span class="built_in">str</span> = <span class="string">'ac abcd eabc abcdes 23abc'</span>;</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(reg.<span class="built_in">exec</span>(<span class="built_in">str</span>))  <span class="comment">//["ac", "a", index: 0, input: "ac abcd eabc abcdes 23abc", groups: undefined]</span></span><br><span class="line">console.<span class="built_in">log</span>(reg.lastIndex) <span class="comment">//0</span></span><br><span class="line">console.<span class="built_in">log</span>(reg.<span class="built_in">exec</span>(<span class="built_in">str</span>))  <span class="comment">//["ac", "a", index: 0, input: "ac abcd eabc abcdes 23abc", groups: undefined]</span></span><br><span class="line">console.<span class="built_in">log</span>(reg.lastIndex) <span class="comment">//0</span></span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(reg2.lastIndex);    <span class="comment">//0</span></span><br><span class="line">console.<span class="built_in">log</span>(reg2.<span class="built_in">exec</span>(<span class="built_in">str</span>));    <span class="comment">//["ac", "a", index: 0, input: "ac abcd eabc abcdes 23abc", groups: undefined]</span></span><br><span class="line">console.<span class="built_in">log</span>(reg2.lastIndex);    <span class="comment">//2</span></span><br><span class="line">console.<span class="built_in">log</span>(reg2.<span class="built_in">exec</span>(<span class="built_in">str</span>));    <span class="comment">//["abcd", "a", index: 3, input: "ac abcd eabc abcdes 23abc", groups: undefined]</span></span><br></pre></td></tr></table></figure>
+<p>因此可以在循环中反复调用exec获得全部的匹配信息：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/([a-z])[a-z]&#123;1,3&#125;/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'2ac abcd'</span>;</span><br><span class="line"><span class="keyword">var</span> result;</span><br><span class="line"><span class="keyword">while</span>((result = reg2.exec(str)) !== <span class="literal">null</span>)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  <span class="built_in">console</span>.log(reg2.lastIndex)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//["ac", "a", index: 1, input: "2ac abcd", groups: undefined]</span></span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="comment">//["abcd", "a", index: 4, input: "2ac abcd", groups: undefined]</span></span><br><span class="line"><span class="comment">//8</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="string对象上的方法"><a href="#string对象上的方法" class="headerlink" title="string对象上的方法"></a>string对象上的方法</h4><p>string对象上支持正则的方法有：search、match、replace、split</p>
+<p><strong>1.search</strong></p>
+<p>用于检索字符串中与正则表达式匹配的字符的位置。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">stringObject</span><span class="selector-class">.search</span>(<span class="selector-tag">regexp</span>)</span><br></pre></td></tr></table></figure>
+<p>如果找到匹配的字符串则返回匹配的第一个字符的位置，否则，返回－1。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /\<span class="keyword">d</span>/,</span><br><span class="line">    str = 'hello 2 world';</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(str.<span class="keyword">search</span>(<span class="keyword">reg</span>));       <span class="comment">//6</span></span><br></pre></td></tr></table></figure>
+<p><br><br><strong>2.match</strong></p>
+<p>用于检索字符串中匹配的字符。</p>
+<figure class="highlight coq"><table><tr><td class="code"><pre><span class="line">stringObject.<span class="keyword">match</span>(regexp)</span><br></pre></td></tr></table></figure>
+<p>如果检索到匹配的字符，则返回一个数组，否则，返回null。</p>
+<p>当regexp不是全局匹配时，match方法返回的数组和exec方法没用全局匹配返回的数组相同。第0个元素为匹配的字符，第1个元素（如果有子表达式的话）为RegExpObject的第1个字表达式相匹配的的字符，以此类推。还有<code>index</code>和<code>input</code>属性。</p>
+<p>当regexp是搜索时，match方法返回的包含所有匹配的字符的数据。</p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line">var reg = /([a-z])[a-z]&#123;<span class="number">1</span>,<span class="number">3</span>&#125;/,</span><br><span class="line">    reg2 = /([a-z])[a-z]&#123;<span class="number">1</span>,<span class="number">3</span>&#125;/g;</span><br><span class="line">var str = <span class="string">'ac abcd eabc abcdes 23abc'</span>;</span><br><span class="line"></span><br><span class="line">console.log(str.match(reg)); //[<span class="string">"ac"</span>, <span class="string">"a"</span>, index: <span class="number">0</span>, input: <span class="string">"ac abcd eabc abcdes 23abc"</span>, groups: undefined]</span><br><span class="line"></span><br><span class="line">console.log(str.match(reg2)); // [<span class="string">"ac"</span>, <span class="string">"abcd"</span>, <span class="string">"eabc"</span>, <span class="string">"abcd"</span>, <span class="string">"es"</span>, <span class="string">"abc"</span>]</span><br></pre></td></tr></table></figure>
+<p><br><br><strong>3.replace</strong></p>
+<p>用于替换正则表达式匹配的字符。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">stringObject.<span class="built_in">replace</span>(regexp,<span class="keyword">string</span>/<span class="function"><span class="keyword">function</span>)</span></span><br></pre></td></tr></table></figure>
+<p>第一个参数为正则表达式，第二个参数为替换文本或函数，返回的是替换之后的新字符串。</p>
+<p>如果regexp是全局检索的，那么replace方法将会替换所有匹配的子串。否则，它只替换第一个匹配的子串。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/xxx/</span>,</span><br><span class="line">    reg2 = <span class="regexp">/xxx/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'hello xxx , welcom to xxx world'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg , <span class="string">'John'</span>));  <span class="comment">//"hello John , welcom to xxx world"</span></span><br><span class="line"></span><br><span class="line">str.replace(reg2 , <span class="string">'John'</span>);     <span class="comment">// "hello John , welcom to John world"</span></span><br></pre></td></tr></table></figure>
+<p>第二个参数中可以使用具有特殊意义的<code>$</code>符号匹配：</p>
+<p><code>$1、$2、...</code> : 与regexp中第1、第2子表达式相匹配的文本<br><br><code>$&amp;</code> : 与regexp相匹配的子串<br><br><code>$`</code> : 位于匹配字串左侧的文本<br><br><code>$&#39;</code> : 位于匹配字串右侧的文本<br><br><code>$$</code> : 直接量符号<br></p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /(\w+) (\w+)/,</span><br><span class="line">    str = 'Hi,Jackie Chan,123';</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(str.<span class="keyword">replace</span>(<span class="keyword">reg</span> , '<span class="variable">$2</span> <span class="variable">$1</span>'));     <span class="comment">//"Hi,Chan Jackie,123"</span></span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(str.<span class="keyword">replace</span>(<span class="keyword">reg</span> , '$&amp; , welcome'));     <span class="comment">//"Hi,Jackie Chan , welcome,123"</span></span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(str.<span class="keyword">replace</span>(<span class="keyword">reg</span> , '$`'));       <span class="comment">//"Hi,Hi,,123"</span></span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(str.<span class="keyword">replace</span>(<span class="keyword">reg</span> , `$'`));       <span class="comment">//"Hi,,123,123"</span></span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(str.<span class="keyword">replace</span>(<span class="keyword">reg</span> , `$$`));       <span class="comment">//"Hi,$,123"</span></span><br></pre></td></tr></table></figure>
+<p>如果第二个参数是函数的话，函数的入参如下：</p>
+<p><code>match</code> : 与regexp相匹配的子串，同上<code>$&amp;</code>  <br><br><code>p1,p2...</code> : 与regexp中第1、第2子表达式相匹配的文本，同上<code>$1、$2、...</code>  <br><br><code>offset</code> : 匹配到子串第一个字符的位置    <br><br><code>string</code> : 被匹配的原字符串 <br></p>
+<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(\w+) (\w+)/</span>,</span><br><span class="line">    str = <span class="string">'Hi,Jackie Chan,123'</span>;</span><br><span class="line"></span><br><span class="line">str.replace(reg , <span class="function"><span class="keyword">function</span>(<span class="params">match , p1 , p2 , offset , string</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'match:'</span> , match)   <span class="comment">//match: Jackie Chan</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'p1:'</span> , p1)         <span class="comment">//p1: Jackie</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'p2:'</span> , p2)         <span class="comment">//p2: Chan</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'offset:'</span> , offset) <span class="comment">//offset: 3</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'string:'</span> , <span class="built_in">string</span>);    <span class="comment">//string: Hi,Jackie Chan,123</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;p2&#125;</span> <span class="subst">$&#123;p1&#125;</span> , welcome`</span>;</span><br><span class="line">&#125;)  <span class="comment">//"Hi,Chan Jackie , welcome,123"</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>4.split</strong></p>
+<p>根据正则表达式匹配的子串分割成数组。</p>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">stringObject.<span class="keyword">split</span>(<span class="keyword">regexp</span> , howmany);</span><br></pre></td></tr></table></figure>
+<p>第一个参数为正则表达式，第二个参数为指定返回数组的最大长度。split方法返回的是一个数组。</p>
+<p>返回的数组中是不包含匹配的子串，如果想要包含匹配的子串，需要给正则加上捕获括号。</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">var reg = <span class="regexp">/\,/</span>,</span><br><span class="line">    reg2 = <span class="regexp">/(\,)/</span>,</span><br><span class="line">    str = <span class="string">'hello,how,where'</span>;</span><br><span class="line"></span><br><span class="line">console.log(str.split(reg));    <span class="regexp">//</span>[<span class="string">"hello"</span>, <span class="string">"how"</span>, <span class="string">"where"</span>]</span><br><span class="line"></span><br><span class="line">console.log(str.split(reg2));   <span class="regexp">//</span>[<span class="string">"hello"</span>, <span class="string">","</span>, <span class="string">"how"</span>, <span class="string">","</span>, <span class="string">"where"</span>]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="匹配特殊用法"><a href="#匹配特殊用法" class="headerlink" title="匹配特殊用法"></a>匹配特殊用法</h2><p><strong>反向引用</strong></p>
+<p>将捕获括号内匹配的内容保存到一个以数字编号的组里，再使用该数字编号，则是反向引用。</p>
+<p>比如想要匹配日期，正则表达式为<code>/(\d+)[./-](\d+)[./-](\d+)/</code>，可以匹配日期格式1980.09.07、1980/09/07、1980-09-07，那么可以匹配为1980/09.07，不是我们想要的结果，我们想要的日期分隔符能够统一，那么可以使用反向引用实现。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /(\<span class="keyword">d</span>+)([./-])(\<span class="keyword">d</span>+)\2(\<span class="keyword">d</span>+)/;</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>('2018/09/07'));        <span class="comment">//true</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>('2018/09.07'));        <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>反向引用的数字编号<code>\n</code>中<code>n</code>为第n个捕获括号。</p>
+<p><br></p>
+</div></article></div></section><footer><div class="paginator"><a href="/2018/08/12/PWA学习总结/" class="next">NEXT</a></div><div data-thread-key="2018/09/24/正则表达式/" data-title="正则表达式" data-url="http://zengzoe.github.io/2018/09/24/正则表达式/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"zengzoe"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2016 - 2018 <a href="http://zengzoe.github.io">Zeng Zoe</a>, unless otherwise noted.</p><p style="display:none !important;"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span><span id="busuanzi_container_site_uv">本站总访客数<span id="busuanzi_value_site_uv"></span>人次</span></p></div></footer><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
