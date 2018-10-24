@@ -3,11 +3,12 @@
 <p>接下来，我将从以上几个方面去总结Charles的使用。</p>
 <h4 id="设置系统代理"><a href="#设置系统代理" class="headerlink" title="设置系统代理"></a>设置系统代理</h4><p>将Charles设置为系统代理才可以监控请求，所以使用Charles的第一步是设置为系统代理，步骤如下：</p>
 <p>1.选择左上角“Proxy -&gt; macOS Proxy”，开启macOS Proxy。<br><img src="/2018/06/04/charles使用总结/charles01.png" alt=""></p>
-<p>2.在“系统偏好设置 -&gt; 高级 -&gt; 代理”，选择如下：<br><img src="/2018/06/04/charles使用总结/charles02.png" alt=""><br>注意：自动代理配置选项不能选中哦，否则检测不到请求</p>
+<p>2.在“系统偏好设置 -&gt; 网络 -&gt; 高级 -&gt; 代理”，选择如下：<br><img src="/2018/06/04/charles使用总结/charles02.png" alt=""><br>注意：自动代理配置选项不能选中哦，否则检测不到请求</p>
 <p>操作完之后就可以在Charles主页看到请求。<br><img src="/2018/06/04/charles使用总结/charles03.png" alt=""></p>
 <h4 id="获取手机上的请求"><a href="#获取手机上的请求" class="headerlink" title="获取手机上的请求"></a>获取手机上的请求</h4><p>有时想要手机设备上进行一些操作，需要调试查看服务器返回的数据，Charles在此提供了大大的便利。</p>
 <p><strong> 1.打开Charles的代理功能 </strong> </p>
 <p>(1) 选择左上角“Proxy -&gt; Proxy settings”<br><img src="/2018/06/04/charles使用总结/charles04.png" alt=""><br>(2) 勾选“Enable transparent HTTP proxing”,Port端口填8888<br><img src="/2018/06/04/charles使用总结/charles05.png" alt=""></p>
+<p>(3) 设置SSL Proxying<br> 选择“Proxy -&gt; SSL Proxing Settings -&gt; add”<br><img src="/2018/06/04/charles使用总结/charles23.png" alt=""></p>
 <p><strong> 2.抓https请求，需安装Charles根证书 </strong></p>
 <p>(1)选择左上角“help -&gt; SSL Proxing -&gt; Install Charles Root Certificate”<br><img src="/2018/06/04/charles使用总结/charles06.png" alt=""><br>(2) 点击添加<br><img src="/2018/06/04/charles使用总结/charles07.png" alt=""><br>(3) 在钥匙串访问中找到Charles Proxy CA，选中双击<br><img src="/2018/06/04/charles使用总结/charles08.png" alt=""><br>(4) 点击信任，展示内容，选择始终信任<br><img src="/2018/06/04/charles使用总结/charles09.png" alt=""></p>
 <p>安装完成。</p>
@@ -18,7 +19,10 @@
 <p>(4) 此时Charles弹出手机连接信号，选择Alloy。<br><img src="/2018/06/04/charles使用总结/charles11.png" alt=""></p>
 <p>(5) 在手机浏览器上访问地址：<a href="http://chls.pro/ssl" target="_blank" rel="noopener">http://chls.pro/ssl</a>，打开安装证书页面，点击Allow。<br><img src="/2018/06/04/charles使用总结/charles14.png" alt=""></p>
 <p>(6) 安装证书。<br><img src="/2018/06/04/charles使用总结/charles15.png" alt=""></p>
-<p>(7) 完成设置<br><img src="/2018/06/04/charles使用总结/charles16.png" alt=""></p>
+<p>(7) 完成安装<br><img src="/2018/06/04/charles使用总结/charles16.png" alt=""></p>
+<p>(8) 证书任性设置</p>
+<p>在“设置 -&gt; 通用 -&gt; 证书信任设置”里勾选安装的证书：</p>
+<p><img src="/2018/06/04/charles使用总结/charles22.jpeg" alt=""></p>
 <p>手机浏览页面，即可在Charles看到请求。</p>
 <h4 id="模拟慢速环境"><a href="#模拟慢速环境" class="headerlink" title="模拟慢速环境"></a>模拟慢速环境</h4><p>有时项目需要在慢速情况下进行对应的操作，那么可以通过Charles的Throttle设置模拟慢速环境。</p>
 <p>1.在左上角选择“Proxy -&gt; Throttle settings”<br><img src="/2018/06/04/charles使用总结/charles17.png" alt=""></p>
